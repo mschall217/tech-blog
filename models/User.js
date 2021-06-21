@@ -1,6 +1,6 @@
 //set up user model from mini project activity 28
 
-onst { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
