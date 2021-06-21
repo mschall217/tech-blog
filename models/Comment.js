@@ -42,4 +42,4 @@ Comment.init(
       }
 );
 
-module.exports = Post;
+module.exports = Comment;
