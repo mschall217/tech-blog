@@ -1,11 +1,23 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Post, } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
     res.render('homepage');
   } catch (err) {
+    res.status(err).json(err);
+  }
+});
+
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } }).catch((err) => { res.json(err);});
+    const posts = postData.map((post) => post.get({ plain: true }));
+    console.log(posts);
+    res.render('dashboard', { posts});
+  } catch (err) {
+    console.log(err);
     res.status(err).json(err);
   }
 });
