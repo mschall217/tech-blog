@@ -20,12 +20,12 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/homepage', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const user = await User.findByPk(req.session.user_id, { attributes: { exclude: ['password'] } });
     const users = { ...user.dataValues };
     console.log(users);
-    res.render('homepage', {users});
+    res.render('dashboard', {users});
   } catch (err) {
     console.log(err);
     res.status(err).json(err);

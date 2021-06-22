@@ -1,18 +1,35 @@
-<body>
-    <div class="post card">
-  <div class="card-header">
-    <h2>Create New Post</h2>
-  </div>
-  <form id="new-post-form" class="card-body">
-    <label class="form-label" for="post-title">Title</label>
-    <input type="text" name="post-title" class="form-input" />
+<h2 class="title pb-4">Dashboard: </h2><hr>
+{{#if posts.length}}
+    </div>
 
-    <label class="form-label" for="post-body">Content</label>
-    <textarea name="post-body" class="form-input"></textarea>
+    {{#each posts as |post|}}
+        {{> post-info post}}
+        
+            <a href="/dashboard/edit/{{post.id}}"><button class="button mb-5 ml-5 is-warning">edit post</button></a>
+        </div>
+    {{/each}}
 
-    <button type="submit" class="btn">Create</button>
+{{else}}
+<h6 class="pb-4 has-text-centered is-italic">No Posts! Make one now!</h6>
+
+{{/if}}
+
+<script src="/js/script.js"></script>
+
+
+<section>
+    <h2 class="title">Create a New Blog Post</h2>
+
+  <form class="new-post-form">
+    <div>
+      <label for="post-title">Title:</label>
+      <input class="input" type="text" id="post-title" name="post-title" placeholder="insert title here"/>
+    </div>
+    <div>
+      <label for="post-content">Content:</label>
+      <input class="textarea is-large" id="postBody" name="post-content" placeholder="Say it!"/>
+    </div>
+    <button type="submit" class="button is-primary is-pulled-right">create post</button>
   </form>
-</div>
+</section>
 
-<script src="script.js"></script>
-</body>
