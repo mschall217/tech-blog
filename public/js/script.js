@@ -25,3 +25,21 @@ async function newFormHandler(event) {
 }
 
 document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
+// let editButton = document.querySelector('#edit');
+//                 editButton.addEventListener('click', async () =>{
+//                     const response = await fetch(`/api/posts`, {
+//                         method: 'PUT',
+//                         body: JSON.stringify({
+//                           title,
+//                           postBody
+//                         }),
+//                         headers: {
+//                           'Content-Type': 'application/json',
+//                         },
+//                     });
+//                     if (response.ok) {
+//                         document.location.replace('/profile');
+//                       } else {
+//                         (err) => console.log(err);
+//                       }
+//                 })

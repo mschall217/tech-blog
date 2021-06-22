@@ -4,8 +4,12 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    res.render('homepage');
+    const postData = await Post.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } }).catch((err) => { res.json(err);});
+    const posts = postData.map((post) => post.get({ plain: true }));
+    console.log(posts);
+    res.render('homepage', {posts});
   } catch (err) {
+    console.log(err);
     res.status(err).json(err);
   }
 });
@@ -21,6 +25,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     res.status(err).json(err);
   }
 });
+
 
 router.get('/login', (req, res) => {
 
@@ -43,6 +48,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
     res.status(err).json(err);
   }
 });
+
+
 
 router.get('/homepage', async (req, res) => {
   try {;
